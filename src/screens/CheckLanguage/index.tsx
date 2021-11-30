@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {View, Text} from 'react-native';
 import {RadioButton} from 'react-native-paper';
+import CustomHeader from '../../components/CustomHeader';
 import CustomSubmitBtn from '../../components/CustomSubmitBtn';
 import {colors, sizes} from '../../global';
 import {INTRO_SLIDER} from '../../global/types';
@@ -11,6 +12,7 @@ const CheckLanguage = ({navigation}: any) => {
   const [checked, setChecked] = useState('first');
   return (
     <View style={styles.container}>
+      <CustomHeader title="Check language" />
       <View style={styles.checkContainer}>
         <Text style={styles.lang}>English</Text>
         <View

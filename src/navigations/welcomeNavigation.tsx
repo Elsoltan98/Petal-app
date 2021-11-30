@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 
 const WelcomeNavigation = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name={CHECK_LANGUAGE} component={CheckLanguage} />
       <Stack.Screen name={INTRO_SLIDER} component={IntroSlider} />
     </Stack.Navigator>
