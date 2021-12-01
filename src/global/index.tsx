@@ -2,6 +2,8 @@ export const colors = {
   yellow: '#F0D02F',
   orange: '#F6902C',
   gradient: ['#F0D02F', '#F6902C'],
+  white: '#ffffff',
+  grey1: '#707070',
 };
 
 export const sizes = {

@@ -10,32 +10,35 @@ import {
 import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors, sizes} from '../../global';
+import {LOG_IN} from '../../global/types';
 
 const data = [
   {
     key: 1,
-    title: 'Title 1',
-    text: 'Description.\nSay something cool',
-    image: require('./../../assets/sliderImages/slider1.png'),
+    title: 'Choose your product and we will\n Deliver your order',
+    text: 'Discover the best products from more than 100 products\n and fast delivery to your doorstep',
+    image: require('./../../assets/sliderImages/slider3.png'),
+    height: Dimensions.get('screen').height / 4.6,
   },
   {
     key: 2,
-    title: 'Title 2',
-    text: 'Other cool stuff',
+    title: 'Enter your address and we will\n Deliver your order',
+    text: 'Enter your address correctly to receive your order',
     image: require('./../../assets/sliderImages/slider2.png'),
+    height: Dimensions.get('screen').height / 3,
   },
   {
     key: 3,
-    title: 'Rocket guy',
-    text: "I'm already out of descriptions\n\nLorem ipsum bla bla bla",
-    image: require('./../../assets/sliderImages/slider3.png'),
-    height: 200,
+    title: 'Express delivery service',
+    text: 'Fast food delivery to your home or anywhere\n wherever you are',
+    image: require('./../../assets/sliderImages/slider1.png'),
+    height: Dimensions.get('screen').height / 2.35,
   },
 ];
 
 type Item = typeof data[0];
 
-const IntroSlider = () => {
+const IntroSlider = ({navigation}: any) => {
   const renderItem = ({item}: {item: Item}) => {
     return (
       <View
@@ -48,7 +51,12 @@ const IntroSlider = () => {
         <Text style={styles.title}>{item.title}</Text>
         <Image
           source={item.image}
-          style={[styles.image, {height: item.height ? item.height : 320}]}
+          style={[
+            styles.image,
+            {
+              height: item.height,
+            },
+          ]}
         />
         <Text style={styles.text}>{item.text}</Text>
       </View>
@@ -78,9 +86,11 @@ const IntroSlider = () => {
   const renderDoneButton = () => {
     return (
       <View>
-        <LinearGradient style={styles.nextBtn} colors={colors.gradient}>
-          <Text style={styles.nextText}>Done</Text>
-        </LinearGradient>
+        <TouchableOpacity onPress={() => navigation.navigate(LOG_IN)}>
+          <LinearGradient style={styles.nextBtn} colors={colors.gradient}>
+            <Text style={styles.nextText}>Done</Text>
+          </LinearGradient>
+        </TouchableOpacity>
       </View>
     );
   };
@@ -95,6 +105,7 @@ const IntroSlider = () => {
         renderPrevButton={renderPrevButton}
         renderDoneButton={renderDoneButton}
         showPrevButton={true}
+        activeDotStyle={{backgroundColor: colors.orange}}
       />
     </View>
   );
@@ -106,10 +117,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'blue',
+    padding: 25,
+    paddingBottom: 40,
   },
   image: {
     width: Dimensions.get('screen').width / 1.5,
-    height: 320, // 200
     marginVertical: 32,
   },
   text: {
