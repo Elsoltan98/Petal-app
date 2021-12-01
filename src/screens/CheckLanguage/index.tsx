@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {View, Text} from 'react-native';
 import {RadioButton} from 'react-native-paper';
 import CustomHeader from '../../components/CustomHeader';
@@ -16,40 +16,49 @@ const CheckLanguage = ({navigation}: any) => {
       <View style={styles.checkContainer}>
         <Text style={styles.lang}>English</Text>
         <View
-          style={[
-            styles.radioBorder,
-            {
-              backgroundColor: checked === 'first' ? colors.orange : null,
-              borderColor: checked === 'first' ? 'transparent' : 'grey',
-            },
-          ]}>
+          style={
+            Platform.OS === 'ios'
+              ? [
+                  styles.radioBorder,
+                  {
+                    backgroundColor: checked === 'first' ? colors.orange : null,
+                    borderColor: checked === 'first' ? 'transparent' : 'grey',
+                  },
+                ]
+              : null
+          }>
           <RadioButton
             value="first"
             status={checked === 'first' ? 'checked' : 'unchecked'}
             onPress={() => setChecked('first')}
-            color={'#fff'}
+            color={Platform.OS === 'ios' ? '#fff' : colors.orange}
           />
         </View>
       </View>
       <View style={styles.checkContainer}>
         <Text style={styles.lang}>العربية</Text>
         <View
-          style={[
-            styles.radioBorder,
-            {
-              backgroundColor: checked === 'second' ? colors.orange : null,
-              borderColor: checked === 'second' ? 'transparent' : 'grey',
-            },
-          ]}>
+          style={
+            Platform.OS === 'ios'
+              ? [
+                  styles.radioBorder,
+                  {
+                    backgroundColor:
+                      checked === 'second' ? colors.orange : null,
+                    borderColor: checked === 'second' ? 'transparent' : 'grey',
+                  },
+                ]
+              : null
+          }>
           <RadioButton
             value="second"
             status={checked === 'second' ? 'checked' : 'unchecked'}
             onPress={() => setChecked('second')}
-            color={'#fff'}
+            color={Platform.OS === 'ios' ? '#fff' : colors.orange}
           />
         </View>
       </View>
-      <View style={{flex: 1, justifyContent: 'flex-end'}}>
+      <View style={styles.customBtn}>
         <CustomSubmitBtn
           onPress={() => navigation.navigate(INTRO_SLIDER)}
           title="Submit"
@@ -63,7 +72,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     flex: 1,
-    paddingTop: 10,
   },
   checkContainer: {
     flexDirection: 'row',
@@ -79,6 +87,11 @@ const styles = StyleSheet.create({
   radioBorder: {
     borderWidth: 1,
     borderRadius: 50,
+  },
+  customBtn: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: Platform.OS === 'android' ? 10 : 0,
   },
 });
 

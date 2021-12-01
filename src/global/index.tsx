@@ -1,6 +1,7 @@
 export const colors = {
   yellow: '#F0D02F',
   orange: '#F6902C',
+  gradient: ['#F0D02F', '#F6902C'],
 };
 
 export const sizes = {

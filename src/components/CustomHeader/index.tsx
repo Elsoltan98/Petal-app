@@ -1,4 +1,5 @@
 import React from 'react';
+import {Platform} from 'react-native';
 import {View, Text, StyleSheet} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors, sizes} from '../../global';
